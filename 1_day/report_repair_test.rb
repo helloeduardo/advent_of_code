@@ -207,12 +207,22 @@ class ReportRepairTest < Minitest::Test
 
       @repair = ReportRepair.new(@input)
   end
-  
+
   def test_it_exists
     assert_instance_of ReportRepair, @repair
   end
 
   def test_it_has_expenses
     assert_equal @input, @repair.expenses
+  end
+
+  def test_it_can_find_elements_that_sum_to_2020
+    assert_equal [1472, 548], @repair.sum_to_2020(2)
+    assert_equal [807, 320, 893], @repair.sum_to_2020(3)
+  end
+
+  def test_it_can_find_the_product
+    assert_equal 806656, @repair.product(2)
+    assert_equal 230608320, @repair.product(3)
   end
 end
