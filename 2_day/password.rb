@@ -6,7 +6,11 @@ class Password
     @passcode = data[2]
   end
 
-  def valid?
+  def valid_by_frequency?
     @passcode.count(@letter).between?(@min, @max)
+  end
+
+  def valid_by_position?
+    (@passcode[@min - 1] == @letter) ^ (@passcode[@max - 1] == @letter)
   end
 end

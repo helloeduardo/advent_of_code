@@ -7,9 +7,11 @@ class PasswordPhilosophy
     end
   end
 
-  def valid_count
-    passwords.count do |password|
-      password.valid?
-    end
+  def valid_count_by_frequency
+    passwords.count(&:valid_by_frequency?)
+  end
+
+  def valid_count_by_position
+    passwords.count(&:valid_by_position?)
   end
 end

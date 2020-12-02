@@ -13,7 +13,11 @@ class PasswordPhilosophyTest < Minitest::Test
     assert_instance_of PasswordPhilosophy, @password_philosophy
   end
 
-  def test_valid_count
-    assert_equal 546, @password_philosophy.valid_count
+  def test_valid_count_by_frequency
+    assert_equal 546, @password_philosophy.valid_count_by_frequency
+  end
+
+  def test_valid_count_by_position
+    assert_equal 275, @password_philosophy.valid_count_by_position
   end
 end
