@@ -12,6 +12,9 @@ class BinaryBoarding
   end
 
   def my_seat_id
-    
+    seat_ids = boarding_passes.map(&:seat_id)
+    seat_ids.find do |id|
+      !seat_ids.include?(id + 1) && seat_ids.include?(id + 2)
+    end
   end
 end
