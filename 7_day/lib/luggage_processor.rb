@@ -7,21 +7,6 @@ class LuggageProcessor
     end
   end
 
-  # def count_of_bags_containing(bag_color, bags_containing_color = [])
-  #   # problem, counting muted yellow twice
-  #   count = 0
-  #   bags.each do |bag|
-  #     if bag.contents.include?(bag_color)
-  #       unless counted_bags.include?(bag_color)
-  #         counted_bags << bag.color
-  #         count += 1
-  #         count += count_of_bags_containing(bag.color, counted_bags)
-  #       end
-  #     end
-  #   end
-  #   count
-  # end
-
   def bags_containing(color, result = [])
     bags.each do |bag|
       if bag.contents.include?(color)
@@ -37,7 +22,11 @@ class LuggageProcessor
   end
 
   def count_of_bags_containing(color)
+    # Need to call uniq due to inefficient algorithm
     bags_containing(color).uniq.count
   end
 
+  def count_of_bags_contained_in(color)
+
+  end
 end
