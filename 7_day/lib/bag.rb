@@ -3,13 +3,21 @@ class Bag
 
   def initialize(bag_rule)
     @rule = bag_rule
-    @color = bag_rule.split[0..1].join(" ")
+    @color = parse_color
     @contents = parse_contents
   end
 
+  def parse_color
+    rule.split[0..1].join(" ")
+  end
+
   def parse_contents
-    rule.split("contain ")[1].gsub(/\d+\s/, "").split(", ").map do |bag|
-      bag.split[0..1].join(" ")
+    content = {}
+
+    rule.split("contain ")[1].split(", ").map do |bag|
+      content[bag.split[1..2].join(" ")] = bag.split[0].to_i
     end
+    
+    content
   end
 end

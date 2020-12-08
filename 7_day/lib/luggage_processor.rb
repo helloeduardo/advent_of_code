@@ -9,7 +9,7 @@ class LuggageProcessor
 
   def bags_containing(color, result = [])
     bags.each do |bag|
-      if bag.contents.include?(color)
+      if bag.contents.keys.include?(color)
         result << bag.color unless result.include?(bag.color)
         bags_containing(bag.color, result)
       end
@@ -21,7 +21,21 @@ class LuggageProcessor
     bags_containing(color).count
   end
 
-  def count_of_bags_contained_in(color)
+  def bags_contained_in(color, result = [])
+    bags.each do |bag|
+      if bag.color == color
+        bag.contents.each do |color, quantity|
+          quantity.times do
+            result << color
+            bags_contained_in(color, result)
+          end
+        end
+      end
+    end
+    result
+  end
 
+  def count_of_bags_contained_in(color)
+    bags_contained_in(color).count
   end
 end
